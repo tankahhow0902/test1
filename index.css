@@ -1,0 +1,189 @@
+body::-webkit-scrollbar { display: none; }
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background: rgb(37, 37, 37);
+  color: #f0f0f0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+header {
+  background: rgb(20, 26, 32);
+  backdrop-filter: blur(8px);
+  padding: 0 3%;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2%;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  border-radius: 0px;
+  color: #f0f0f0;
+  text-decoration: none;
+}
+nav ul li a.active {
+  color: #2266e6;
+  background: linear-gradient(#2267e600, #2267e600,#2267e600,#2267e600, #2267e600,#2266e6);
+}
+nav ul li a:hover {
+  background: linear-gradient(rgb(20, 26, 32),#673ab7);
+  border-radius: 12px;
+  color: #fff;
+}
+
+main {
+  position: relative;
+  height: 80vh;
+  padding-top: 5%;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 90vh;
+  background-image: url(images/index-bg.jpg);
+  filter: blur(8px);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section {
+  display: flex;
+  height: max-content;
+  position: relative;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 900px;
+  background: linear-gradient(135deg, #e47c7c, #9198e5);
+  backdrop-filter: blur(15px) saturate(150%);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  z-index: 1;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+
+section.show { transform: translateY(0); opacity: 1; }
+
+section::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 5px;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 230, 100, 0.8), rgba(156, 39, 176, 0.8), transparent 70%);
+  -webkit-mask: linear-gradient(#fff, #fff) content-box,  linear-gradient(#fff, #fff);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+section:hover::before{ opacity: 1; }
+
+.profile {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.profile::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -6px; right: -6px; bottom: -2px;
+  border-radius: 8px;
+  background: linear-gradient( 225deg,#3dffc9, #f7c723, #eb0ea5, #3dffc9 );
+  background-size: 200% 200%;
+  animation: rainbowFlow 2s linear infinite;
+}
+@keyframes rainbowFlow { 0%   { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+
+.profile img {
+  margin-top: 0.2rem;
+  border-radius: 8px;
+  width: 230px;
+  height: auto;
+  background: #fff;
+  position: relative;
+}
+
+.intro { z-index: 2; }
+
+.intro h2 {
+  margin-top: 0;
+  color: #000000;
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5rem;
+}
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #9FA1FF, #B5BAFF);
+  color: #D9F9DF;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 188, 212, 0.5); }
+
+footer {
+  text-align: center;
+  background: rgb(20, 26, 32);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+  z-index: 2;
+}
+footer a {
+  color: #00bcd4;
+  text-decoration: none;
+  padding: 0.6%;
+}
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  nav ul li a { font-size: 1rem; padding: 0.5rem; }
+  main { margin-top: 5vh; margin-bottom: 40vh; }
+  section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  section:hover::before{ opacity: 0; }
+
+  .profile img { width: 120px; border-radius: 0%; }
+  .intro h2 { font-size: 1.8rem; }
+  .profile img, .intro h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  footer { font-size: 10px; }
+
+}
